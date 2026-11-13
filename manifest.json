@@ -1,9 +1,7 @@
 {
-  "id": "/Sell-an/pwa-v4",
   "name": "Sell-an Cashflow Jualan",
   "short_name": "Sell-an",
-  "start_url": "/Sell-an/app.html",
-  "scope": "/Sell-an/",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
