@@ -1,9 +1,9 @@
 {
-  "id": "/Sell-an/?v=2",
+  "id": "/Sell-an/app.html",
   "name": "Sell-an Cashflow Jualan",
   "short_name": "Sell-an",
-  "start_url": "/Sell-an/index.html?v=2",
-  "scope": "/Sell-an/",
+  "start_url": "/Sell-an/app.html",
+  "scope": "/Sell-an/app.html",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
@@ -12,14 +12,12 @@
     {
       "src": "./5.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
       "src": "./5.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     }
   ]
 }
