@@ -1,8 +1,8 @@
 {
-  "id": "/Sell-an/",
+  "id": "/Sell-an/?v=2",
   "name": "Sell-an Cashflow Jualan",
   "short_name": "Sell-an",
-  "start_url": "/Sell-an/index.html",
+  "start_url": "/Sell-an/index.html?v=2",
   "scope": "/Sell-an/",
   "display": "standalone",
   "background_color": "#0f172a",
