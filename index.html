@@ -6,11 +6,16 @@
   <title>Sell-an</title>
   
   <!-- Konfigurasi PWA & Manifest -->
-  <meta name="theme-color" content="#ffffff">
-  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="manifest" href="/Sell-an/manifest.json">
   
+  <!-- Ikon Utama untuk Chrome, Android & Tab Browser (Ini yang tadi belum ada) -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/Sell-an/5.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/Sell-an/5.png">
+  <link rel="shortcut icon" type="image/png" href="/Sell-an/5.png">
+
   <!-- Konfigurasi khusus iOS (iPhone/iPad) -->
-  <link rel="apple-touch-icon" href="./5.png">
+  <link rel="apple-touch-icon" href="/Sell-an/5.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Sell-an">
@@ -34,18 +39,18 @@
 </head>
 <body>
 
-  <!-- Ganti src dengan URL /exec dari Google Apps Script -->
+  <!-- URL /exec dari Google Apps Script -->
   <iframe src="https://script.google.com/macros/s/AKfycbw1xx9nuYW-tsaH3CsAdMoEGmtUrJBOu4LtKzzKODyY8N5asrOvuK3jjdt0HLEX9BYxaw/exec" allow="clipboard-read; clipboard-write; geolocation; microphone; camera"></iframe>
 
   <!-- Registrasi Service Worker -->
   <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/Sell-an/sw.js', { scope: '/Sell-an/' })
-        .then(reg => console.log('SW Sell-an terdaftar:', reg.scope))
-        .catch(err => console.error('SW gagal:', err));
-    });
-  }
-</script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/Sell-an/sw.js', { scope: '/Sell-an/' })
+          .then(reg => console.log('SW Sell-an terdaftar:', reg.scope))
+          .catch(err => console.error('SW gagal:', err));
+      });
+    }
+  </script>
 </body>
 </html>
