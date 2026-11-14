@@ -1,9 +1,9 @@
 {
-  "id": "/Sell-an/?v=fresh1",
+  "id": "/Sell-an/",
   "name": "Sell-an Cashflow",
   "short_name": "Sell-an",
   "description": "Kelola modal & arus kas jualan dengan mudah",
-  "start_url": "/Sell-an/index.html?v=fresh1",
+  "start_url": "/Sell-an/",
   "scope": "/Sell-an/",
   "display": "standalone",
   "orientation": "portrait",
