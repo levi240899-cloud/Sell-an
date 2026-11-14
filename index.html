@@ -39,13 +39,13 @@
 
   <!-- Registrasi Service Worker -->
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-          .then(reg => console.log('SW terdaftar:', reg.scope))
-          .catch(err => console.error('SW gagal:', err));
-      });
-    }
-  </script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/Sell-an/sw.js', { scope: '/Sell-an/' })
+        .then(reg => console.log('SW Sell-an terdaftar:', reg.scope))
+        .catch(err => console.error('SW gagal:', err));
+    });
+  }
+</script>
 </body>
 </html>
