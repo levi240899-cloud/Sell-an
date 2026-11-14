@@ -5,16 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Sell-an</title>
   
-  <!-- Konfigurasi PWA & Manifest -->
   <meta name="theme-color" content="#4f46e5">
-  <link rel="manifest" href="/Sell-an/manifest.json">
+  <link id="pwa-manifest" rel="manifest" href="/Sell-an/manifest.json">
   
-  <!-- Ikon Utama untuk Chrome, Android & Tab Browser (Ini yang tadi belum ada) -->
-  <link rel="icon" type="image/png" sizes="192x192" href="/Sell-an/5.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/Sell-an/5.png">
-  <link rel="shortcut icon" type="image/png" href="/Sell-an/5.png">
-
-  <!-- Konfigurasi khusus iOS (iPhone/iPad) -->
+  <!-- Ikon untuk Browser & iOS -->
+  <link rel="icon" type="image/png" href="/Sell-an/5.png">
   <link rel="apple-touch-icon" href="/Sell-an/5.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -39,18 +34,53 @@
 </head>
 <body>
 
-  <!-- URL /exec dari Google Apps Script -->
+  <!-- Aplikasi Google Apps Script Sell-an -->
   <iframe src="https://script.google.com/macros/s/AKfycbw1xx9nuYW-tsaH3CsAdMoEGmtUrJBOu4LtKzzKODyY8N5asrOvuK3jjdt0HLEX9BYxaw/exec" allow="clipboard-read; clipboard-write; geolocation; microphone; camera"></iframe>
 
-  <!-- Registrasi Service Worker -->
   <script>
+    // 1. Daftarkan Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/Sell-an/sw.js', { scope: '/Sell-an/' })
-          .then(reg => console.log('SW Sell-an terdaftar:', reg.scope))
+          .then(reg => console.log('SW terdaftar:', reg.scope))
           .catch(err => console.error('SW gagal:', err));
       });
     }
+
+    // 2. Otomatis sesuaikan ukuran 5.png menjadi 192x192 & 512x512 jika ukuran aslinya belum pas
+    (function fixIconSize() {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = '/Sell-an/5.png';
+      img.onload = function() {
+        // Jika ukuran 5.png bukan 192x192 atau 512x512, konversi otomatis via Canvas
+        if (img.width !== 192 && img.width !== 512) {
+          const makeIcon = (size) => {
+            const c = document.createElement('canvas');
+            c.width = size; c.height = size;
+            c.getContext('2d').drawImage(img, 0, 0, size, size);
+            return c.toDataURL('image/png');
+          };
+          const dynamicManifest = {
+            "id": "/Sell-an/?v=fresh1",
+            "name": "Sell-an Cashflow",
+            "short_name": "Sell-an",
+            "start_url": window.location.origin + "/Sell-an/index.html?v=fresh1",
+            "scope": window.location.origin + "/Sell-an/",
+            "display": "standalone",
+            "orientation": "portrait",
+            "background_color": "#ffffff",
+            "theme_color": "#4f46e5",
+            "icons": [
+              { "src": makeIcon(192), "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+              { "src": makeIcon(512), "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+            ]
+          };
+          const blob = new Blob([JSON.stringify(dynamicManifest)], {type: 'application/json'});
+          document.getElementById('pwa-manifest').setAttribute('href', URL.createObjectURL(blob));
+        }
+      };
+    })();
   </script>
 </body>
 </html>
